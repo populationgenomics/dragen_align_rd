@@ -4,6 +4,7 @@ from typing import Iterator
 
 from loguru import logger
 from icasdk.model.create_data import CreateData
+from icasdk.apis.tags import project_data_api
 
 from icasdk import ApiClient, Configuration
 from icasdk.exceptions import ApiException
@@ -27,13 +28,15 @@ LOCAL_NAME = f'{BATCH_TMP}/{args.sample}.cram'
 
 with get_ica_api_client() as api_client:
 
+    pd_api = project_data_api.ProjectDataApi(api_client)
+
     folder = f'/{args.bucket}/{args.sample}/'
     body = CreateData(
         name=f'{args.sample}.cram',
         folderPath=folder,
         dataType='FILE',
     )
-    api_response = api_client.create_data_in_project(  # type: ignore[ReportUnknownVariableType]
+    api_response = pd_api.create_data_in_project(  # type: ignore[ReportUnknownVariableType]
         path_params=path_params,  # type: ignore[ReportUnknownVariableType]
         body=body,
     )
