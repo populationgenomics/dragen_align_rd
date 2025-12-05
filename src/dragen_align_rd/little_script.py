@@ -11,7 +11,7 @@ from icasdk.exceptions import ApiException
 
 from dragen_align_rd.utils import run_subprocess_with_log
 from dragen_align_rd.ica_cli_utils import authenticate_ica_cli
-from dragen_align_rd.ica_api_utils import get_ica_api_client
+from dragen_align_rd.ica_api_utils import get_ica_api_client, get_ica_secrets
 
 
 BATCH_TMP = os.environ.get('BATCH_TMPDIR', '/io')
@@ -26,6 +26,8 @@ args = parser.parse_args()
 CRAM = f'gs://cpg-{args.bucket}-test/cram/{args.sample}.cram'
 LOCAL_NAME = f'{BATCH_TMP}/{args.sample}.cram'
 
+project_id = get_ica_secrets()['projectID']
+
 with get_ica_api_client() as api_client:
 
     pd_api = project_data_api.ProjectDataApi(api_client)
@@ -37,7 +39,7 @@ with get_ica_api_client() as api_client:
         dataType='FILE',
     )
     api_response = pd_api.create_data_in_project(  # type: ignore[ReportUnknownVariableType]
-        path_params=path_params,  # type: ignore[ReportUnknownVariableType]
+        path_params={'projectId': project_id},  # type: ignore[ReportUnknownVariableType]
         body=body,
     )
     print(api_response)
