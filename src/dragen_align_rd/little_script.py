@@ -42,7 +42,6 @@ with get_ica_api_client() as api_client:
         path_params={'projectId': project_id},  # type: ignore[ReportUnknownVariableType]
         body=body,
     )
-    print(api_response)
 
     new_object_id = api_response.body['data']['id']  # type: ignore[ReportUnknownVariableType]
     new_status = api_response.body['data']['details']['status']  # type: ignore[ReportUnknownVariableType]
