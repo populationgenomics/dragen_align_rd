@@ -39,7 +39,7 @@ parser.add_argument('--sample')
 args = parser.parse_args()
 
 
-CRAM = f'gs://cpg-{args.project}-test/cram/{args.sample}.cram'
+CRAM = f'gs://cpg-{args.bucket}-test/cram/{args.sample}.cram'
 LOCAL_NAME = f'{BATCH_TMP}/{args.sample}.cram'
 
 with get_ica_api_client(key=args.key) as api_client:
