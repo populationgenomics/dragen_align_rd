@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 ICA_REST_ENDPOINT: Final = 'https://ica.illumina.com/ica/rest'
 SECRET_CLIENT: Final = secretmanager.SecretManagerServiceClient()
 SECRET_PROJECT: Final = 'cpg-common'
-SECRET_NAME: Final = 'illumina_cpg_workbench_api'
+SECRET_NAME: Final = 'ica_seqr_rd_test'
 SECRET_VERSION: Final = 'latest'
 
 

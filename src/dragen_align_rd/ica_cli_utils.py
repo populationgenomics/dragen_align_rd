@@ -11,19 +11,20 @@ from typing import TYPE_CHECKING, Any, Final
 from loguru import logger
 
 from dragen_align_rd import utils
+from dragen_align_rd.ica_api_utils import SECRET_NAME
 
 if TYPE_CHECKING:
     from subprocess import CompletedProcess
 
 # --- Constants ---
 
-ICA_CLI_SETUP: Final = """
+ICA_CLI_SETUP: Final = f"""
 mkdir -p $HOME/.icav2
 echo "server-url: ica.illumina.com" > /root/.icav2/config.yaml
 
 set +x
-gcloud secrets versions access latest --secret=illumina_cpg_workbench_api --project=cpg-common | jq -r .apiKey > key
-gcloud secrets versions access latest --secret=illumina_cpg_workbench_api --project=cpg-common | jq -r .projectID > projectID
+gcloud secrets versions access latest --secret={SECRET_NAME} --project=cpg-common | jq -r .apiKey > key
+gcloud secrets versions access latest --secret={SECRET_NAME} --project=cpg-common | jq -r .projectID > projectID
 echo "x-api-key: $(cat key)" >> $HOME/.icav2/config.yaml
 icav2 projects enter $(cat projectID)
 set -x
