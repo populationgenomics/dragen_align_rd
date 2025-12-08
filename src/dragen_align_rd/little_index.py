@@ -1,13 +1,8 @@
 import os
 from argparse import ArgumentParser
-from typing import Iterator
 
-from loguru import logger
 from icasdk.model.create_data import CreateData
 from icasdk.apis.tags import project_data_api
-
-from icasdk import ApiClient, Configuration
-from icasdk.exceptions import ApiException
 
 from dragen_align_rd.utils import run_subprocess_with_log
 from dragen_align_rd.ica_cli_utils import authenticate_ica_cli
