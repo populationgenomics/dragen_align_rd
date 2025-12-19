@@ -32,7 +32,7 @@ project_id = get_ica_secrets()['projectID']
 
 secrets: dict[str, str] = get_ica_secrets()
 path_parameters: dict[str, str] = {'projectId': secrets['projectID']}
-base_ica_folder_path = f'/{args.bucket}/{args.cpg_id}/{args.analysis_name}-{args.analysis_id}'
+base_ica_folder_path = f'{args.bucket}/{args.cpg_id}/{args.analysis_name}-{args.analysis_id}'
 storage_client = storage.Client()
 gcs_bucket = storage_client.bucket(BUCKET)
 
