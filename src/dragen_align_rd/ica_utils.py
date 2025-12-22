@@ -249,13 +249,9 @@ def list_and_filter_ica_files(
                 logger.warning(f'Skipping item with missing name or id: {item}')
                 continue
 
-            # Exclude CRAMs, GVCFs, and their indices
-            if file_name.endswith(
-                ('.cram', '.cram.crai', '.gvcf.gz', '.gvcf.gz.tbi'),
-            ):
-                files_to_download.append(
-                    (file_name, file_id),
-                )  # pyright: ignore[reportUnknownArgumentType]
+            files_to_download.append(
+                (file_name, file_id),
+            )  # pyright: ignore[reportUnknownArgumentType]
 
         page_token = api_response.body.get(
             'nextPageToken',
