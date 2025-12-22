@@ -250,7 +250,7 @@ def list_and_filter_ica_files(
                 continue
 
             # Exclude CRAMs, GVCFs, and their indices
-            if not file_name.endswith(
+            if file_name.endswith(
                 ('.cram', '.cram.crai', '.gvcf.gz', '.gvcf.gz.tbi'),
             ):
                 files_to_download.append(
