@@ -32,7 +32,7 @@ project_id = get_ica_secrets()['projectID']
 
 secrets: dict[str, str] = get_ica_secrets()
 path_parameters: dict[str, str] = {'projectId': secrets['projectID']}
-base_ica_folder_path = f'/{args.bucket}/{args.cpg_id}/{args.analysis_name}-{args.analysis_id}/'
+base_ica_folder_path = f'/{args.bucket}/{args.cpg_id}/{args.analysis_name}-{args.analysis_id}/{args.cpg_id}/'
 storage_client = storage.Client()
 gcs_bucket = storage_client.bucket(BUCKET)
 
@@ -55,6 +55,6 @@ with get_ica_api_client() as api_client:
             file_id=file_id,
             file_name=file_name,
             gcs_bucket=gcs_bucket,
-            gcs_prefix=f'ica/{args.cpg_id}/',
+            gcs_prefix=f'ica/{args.cpg_id}',
             expected_md5_hash=None,
         )
