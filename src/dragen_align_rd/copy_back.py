@@ -25,8 +25,7 @@ parser.add_argument('--bucket')
 args = parser.parse_args()
 
 
-BUCKET = f'gs://cpg-{args.bucket}-test'
-OUTPUT_BUCKET_GCS = f'{BUCKET}/ica/{args.cpg_id}/'
+BUCKET = f'cpg-{args.bucket}-test'
 
 project_id = get_ica_secrets()['projectID']
 
