@@ -47,6 +47,8 @@ with get_ica_api_client() as api_client:
         base_ica_folder_path=base_ica_folder_path,
     )
 
+    print(files_to_download)
+
     for file_name, file_id in files_to_download:
         logger.info(f'Preparing to download file: {file_name} (ID: {file_id})')
         stream_ica_file_to_gcs(
